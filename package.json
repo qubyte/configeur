@@ -1,0 +1,35 @@
+{
+  "name": "configeur",
+  "version": "0.0.0",
+  "description": "Extensible parsing of environment variables into config.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "files": [
+    "index.js",
+    "lib/defaultParsers.js",
+    "lib/makeParsers.js",
+    "processConfig.js"
+  ],
+  "repository": "github:qubyte/configeur",
+  "keywords": [
+    "configeur",
+    "configuration",
+    "config",
+    "12factor"
+  ],
+  "author": "Mark S. Everitt <mark.s.everitt@gmail.com> (https://qubyte.codes)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qubyte/configeur/issues"
+  },
+  "homepage": "https://github.com/qubyte/configeur",
+  "devDependencies": {
+    "eslint": "3.12.2",
+    "eslint-config-qubyte": "1.0.1",
+    "mocha": "3.2.0",
+    "sandboxed-module": "2.0.3",
+    "sinon": "1.17.7"
+  }
+}
