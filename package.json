@@ -1,6 +1,6 @@
 {
   "name": "configeur",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Extensible parsing of environment variables into config.",
   "main": "index.js",
   "scripts": {
