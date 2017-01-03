@@ -10,7 +10,7 @@
     "index.js",
     "lib/defaultParsers.js",
     "lib/makeParsers.js",
-    "processConfig.js"
+    "lib/processConfig.js"
   ],
   "repository": "github:qubyte/configeur",
   "keywords": [
