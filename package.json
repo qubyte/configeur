@@ -12,6 +12,9 @@
     "lib/makeParsers.js",
     "lib/processConfig.js"
   ],
+  "engines": {
+    "node": ">=6"
+  },
   "repository": "github:qubyte/configeur",
   "keywords": [
     "configeur",
