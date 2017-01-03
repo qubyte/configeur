@@ -35,8 +35,14 @@ const config = configeur({
 module.exports = config; // An instance of Map.
 ```
 
-The above, assuming no values are read from the environment, will assign
-config.js a `Map` instance with one key `PORT` with a value of `8000`.
+The above, assuming no values are read from the environment, will assign to
+config.js:
+
+```javascript
+{
+  PORT: 8000
+}
+```
 
 Fields used to configure a config variable are:
 
