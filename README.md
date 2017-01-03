@@ -26,9 +26,8 @@ For example:
 const configeur = require('configeur');
 
 const config = configeur({
-    port: {
+    PORT: {
         defaultValue: '8000',
-        envVariableName: 'PORT',
         type: 'number'
     }
 });
@@ -37,13 +36,12 @@ module.exports = config; // An instance of Map.
 ```
 
 The above, assuming no values are read from the environment, will assign
-config.js a `Map` instance with one key `port` with a value of `8000`.
+config.js a `Map` instance with one key `PORT` with a value of `8000`.
 
 Fields used to configure a config variable are:
 
 | field               | required | description |
 | ------------------- | -------- | ----------- |
-| `'envVariableName'` | `true`   | The name of the environment variable to parse. Overrides the default.
 | `'defaultValue'`    | `false`  | The value used when the variable is not found in the environment. Must always be a string, as if it has come from the environment. |
 | `'required'`        | `false`  | Defaults to false. When true, a corresponding environment variable is required. A default will be ignored and an error thrown when the environment variable is not found.
 | `'type'`            | `false`  | The type to cast to. Defaults to `'string'`.

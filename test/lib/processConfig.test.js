@@ -10,19 +10,16 @@ describe('processConfig', () => {
 
   beforeEach(() => {
     schema = {
-      optionWithDefault: {
+      OPTION_WITH_DEFAULT: {
         defaultValue: 'the-default',
-        envVariableName: 'OPTION_WITH_DEFAULT',
         type: 'string'
       },
-      optionIsRequired: {
+      OPTION_IS_REQUIRED: {
         required: true,
-        envVariableName: 'OPTION_IS_REQUIRED',
         type: 'number'
       },
-      anotherOptionIsRequired: {
+      ANOTHER_OPTION_IS_REQUIRED: {
         required: true,
-        envVariableName: 'ANOTHER_OPTION_IS_REQUIRED',
         type: 'boolean'
       }
     };
@@ -40,9 +37,9 @@ describe('processConfig', () => {
     it('uses defaults and returns a map with parsed values', () => {
       assert.ok(config instanceof Map);
       assert.equal(config.size, 3);
-      assert.equal(config.get('optionWithDefault'), 'the-default');
-      assert.strictEqual(config.get('optionIsRequired'), 10);
-      assert.strictEqual(config.get('anotherOptionIsRequired'), true);
+      assert.equal(config.get('OPTION_WITH_DEFAULT'), 'the-default');
+      assert.strictEqual(config.get('OPTION_IS_REQUIRED'), 10);
+      assert.strictEqual(config.get('ANOTHER_OPTION_IS_REQUIRED'), true);
     });
   });
 
@@ -68,9 +65,9 @@ describe('processConfig', () => {
     it('uses the given optional config and returns a map with parsed values', () => {
       assert.ok(config instanceof Map);
       assert.equal(config.size, 3);
-      assert.equal(config.get('optionWithDefault'), 'overridden');
-      assert.strictEqual(config.get('optionIsRequired'), 10);
-      assert.strictEqual(config.get('anotherOptionIsRequired'), true);
+      assert.equal(config.get('OPTION_WITH_DEFAULT'), 'overridden');
+      assert.strictEqual(config.get('OPTION_IS_REQUIRED'), 10);
+      assert.strictEqual(config.get('ANOTHER_OPTION_IS_REQUIRED'), true);
     });
   });
 
@@ -90,7 +87,7 @@ describe('processConfig', () => {
 
   describe('when given a type which does not correspond to a parser', () => {
     it('throws an error', () => {
-      schema.optionWithDefault.type = 'blah';
+      schema.OPTION_WITH_DEFAULT.type = 'blah';
 
       assert.throws(
         () => processConfig(schema, { OPTION_IS_REQUIRED: '10', ANOTHER_OPTION_IS_REQUIRED: 'true' }, parsers),
