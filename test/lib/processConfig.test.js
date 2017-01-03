@@ -4,6 +4,16 @@ const assert = require('assert');
 const parsers = new Map(require('../../lib/defaultParsers'));
 const processConfig = require('../../lib/processConfig');
 
+function getOwnPropertyDescriptors(obj) {
+  const descriptors = {};
+
+  for (const key of Object.getOwnPropertyNames(obj)) {
+    descriptors[key] = Object.getOwnPropertyDescriptor(obj, key);
+  }
+
+  return descriptors;
+}
+
 describe('processConfig', () => {
   let schema;
   let config;
@@ -34,12 +44,12 @@ describe('processConfig', () => {
       config = processConfig(schema, { OPTION_IS_REQUIRED: '10', ANOTHER_OPTION_IS_REQUIRED: 'true' }, parsers);
     });
 
-    it('uses defaults and returns a map with parsed values', () => {
-      assert.ok(config instanceof Map);
-      assert.equal(config.size, 3);
-      assert.equal(config.get('OPTION_WITH_DEFAULT'), 'the-default');
-      assert.strictEqual(config.get('OPTION_IS_REQUIRED'), 10);
-      assert.strictEqual(config.get('ANOTHER_OPTION_IS_REQUIRED'), true);
+    it('uses defaults and returns a frozen prototypeless object with parsed values', () => {
+      assert.deepStrictEqual(getOwnPropertyDescriptors(config), {
+        OPTION_WITH_DEFAULT: { value: 'the-default', enumerable: true, writable: false, configurable: false },
+        OPTION_IS_REQUIRED: { value: 10, enumerable: true, writable: false, configurable: false },
+        ANOTHER_OPTION_IS_REQUIRED: { value: true, enumerable: true, writable: false, configurable: false }
+      });
     });
   });
 
@@ -62,12 +72,12 @@ describe('processConfig', () => {
       }, parsers);
     });
 
-    it('uses the given optional config and returns a map with parsed values', () => {
-      assert.ok(config instanceof Map);
-      assert.equal(config.size, 3);
-      assert.equal(config.get('OPTION_WITH_DEFAULT'), 'overridden');
-      assert.strictEqual(config.get('OPTION_IS_REQUIRED'), 10);
-      assert.strictEqual(config.get('ANOTHER_OPTION_IS_REQUIRED'), true);
+    it('uses the given optional config and returns a frozen prototypeless object with parsed values', () => {
+      assert.deepStrictEqual(getOwnPropertyDescriptors(config), {
+        OPTION_WITH_DEFAULT: { value: 'overridden', enumerable: true, writable: false, configurable: false },
+        OPTION_IS_REQUIRED: { value: 10, enumerable: true, writable: false, configurable: false },
+        ANOTHER_OPTION_IS_REQUIRED: { value: true, enumerable: true, writable: false, configurable: false }
+      });
     });
   });
 
