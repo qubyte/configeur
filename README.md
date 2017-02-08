@@ -13,6 +13,9 @@ found to appropriate types. It supports:
  - Default values when environment variables should be optional.
  - Required values when environment variables are not optional.
 
+For compatibility with babel and TypeScript, this module re-exports itself as
+default and provides a TypeScript definition file.
+
 ### Usage
 
 Configeur accepts an object which defines config variables names and how to
