@@ -1,6 +1,6 @@
 {
   "name": "configeur",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Extensible parsing of environment variables into config.",
   "main": "index.js",
   "types": "index.d.ts",
