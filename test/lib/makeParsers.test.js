@@ -26,8 +26,7 @@ describe('makeParsers', () => {
     it('throws an error', () => {
       assert.throws(
         () => makeParsers('blah'),
-        err => err instanceof Error,
-        'Additional parsers must be undefined or an array.'
+        /Additional parsers must be undefined or an array./
       );
     });
   });
@@ -36,14 +35,12 @@ describe('makeParsers', () => {
     it('throws an error', () => {
       assert.throws(
         () => makeParsers(['no parser']), // Only parser name given.
-        err => err instanceof Error,
-        'Custom parsers must be arrays with name and parser as their two elements.'
+        /Custom parsers must be arrays with name and parser as their two elements./
       );
 
       assert.throws(
         () => makeParsers([undefined, () => {}]), // Only parser function given.
-        err => err instanceof Error,
-        'Custom parsers must be arrays with name and parser as their two elements.'
+        /Custom parsers must be arrays with name and parser as their two elements./
       );
     });
   });
