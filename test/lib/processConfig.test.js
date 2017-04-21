@@ -57,8 +57,7 @@ describe('processConfig', () => {
     it('throws an error with a list of missing required options', () => {
       assert.throws(
         () => processConfig(schema, {}, parsers),
-        err => err instanceof Error,
-        'Missing required config for: optionIsRequired, anotherOptionIsRequired'
+        /Missing required config for: OPTION_IS_REQUIRED, ANOTHER_OPTION_IS_REQUIRED/
       );
     });
   });
@@ -89,8 +88,7 @@ describe('processConfig', () => {
           OPTION_IS_REQUIRED: '10',
           ANOTHER_OPTION_IS_REQUIRED: 'true'
         }, parsers),
-        err => err instanceof Error,
-        'Value to cast was not a string: true'
+        /Value to cast for OPTION_WITH_DEFAULT was not a string: true/
       );
     });
   });
@@ -101,8 +99,7 @@ describe('processConfig', () => {
 
       assert.throws(
         () => processConfig(schema, { OPTION_IS_REQUIRED: '10', ANOTHER_OPTION_IS_REQUIRED: 'true' }, parsers),
-        err => err instanceof Error,
-        'Unsupported config value type: blah'
+        /Unsupported config value type: blah/
       );
     });
   });
