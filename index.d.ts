@@ -11,7 +11,8 @@ interface Environment {
 type Parser = [string, (string) => any];
 
 interface Options {
-  parsers?: Parser[]
+  parsers?: Parser[],
+  mutable?: Boolean
 }
 
 export default function configeur(environment: Environment, options?: Options): Object;

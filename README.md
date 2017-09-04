@@ -80,3 +80,10 @@ const config = configeur(schema, {
     ]
 });
 ```
+
+#### `mutable`
+
+By default, the object returned by configuer is frozen. Since it is also flat,
+the object is completely immutable. The `mutable` option makes configeur return
+an unfrozen object. This is not recommended in general, but may be useful for
+testing purposes.

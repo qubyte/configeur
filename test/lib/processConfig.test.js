@@ -103,4 +103,16 @@ describe('processConfig', () => {
       );
     });
   });
+
+  describe('when configured to be mutable', () => {
+    it('returns a mutable object', () => {
+      const conf = processConfig(schema, { OPTION_IS_REQUIRED: '10', ANOTHER_OPTION_IS_REQUIRED: 'true' }, parsers, true);
+
+      assert.doesNotThrow(() => {
+        conf.OPTION_WITH_DEFAULT = 'hello';
+      });
+
+      assert.equal(conf.OPTION_WITH_DEFAULT, 'hello');
+    });
+  });
 });
