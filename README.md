@@ -1,5 +1,7 @@
 # configeur
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/qubyte/configeur.svg)](https://greenkeeper.io/)
+
 This module is inspired by and borrows much of its behaviour from the excellent
 Konfiga module. This module removes the commandline parsing abilities of its
 ancestor, adds required variables, and simplifies some internal logic around

@@ -5,16 +5,17 @@ const sinon = require('sinon');
 const SandboxedModule = require('sandboxed-module');
 
 describe('configeur', () => {
-  const sandbox = sinon.sandbox.create();
-  const processConfigStub = sandbox.stub();
-  const makeParsersStub = sandbox.stub();
-
-  processConfigStub.returns('fakeProcessedConfig');
-  makeParsersStub.returns('fakeParsers');
-
+  let processConfigStub;
+  let makeParsersStub;
   let configeur;
 
-  before(() => {
+  beforeEach(() => {
+    processConfigStub = sinon.stub();
+    makeParsersStub = sinon.stub();
+
+    processConfigStub.returns('fakeProcessedConfig');
+    makeParsersStub.returns('fakeParsers');
+
     configeur = SandboxedModule.require('../index', {
       requires: {
         './lib/processConfig': processConfigStub,
@@ -26,10 +27,6 @@ describe('configeur', () => {
         }
       }
     });
-  });
-
-  afterEach(() => {
-    sandbox.reset();
   });
 
   it('is a function', () => {
