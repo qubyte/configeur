@@ -31,10 +31,10 @@
   },
   "homepage": "https://github.com/qubyte/configeur",
   "devDependencies": {
-    "eslint": "3.12.2",
-    "eslint-config-qubyte": "1.0.1",
-    "mocha": "3.2.0",
+    "eslint": "4.6.1",
+    "eslint-config-qubyte": "1.1.0",
+    "mocha": "3.5.3",
     "sandboxed-module": "2.0.3",
-    "sinon": "1.17.7"
+    "sinon": "3.2.1"
   }
 }
