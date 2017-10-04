@@ -5,7 +5,8 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "mocha --recursive"
+    "test": "mocha --recursive",
+    "lint": "eslint ."
   },
   "files": [
     "index.js",
@@ -31,10 +32,10 @@
   },
   "homepage": "https://github.com/qubyte/configeur",
   "devDependencies": {
-    "eslint": "4.7.0",
-    "eslint-config-qubyte": "1.1.0",
-    "mocha": "4.0.0",
-    "sandboxed-module": "2.0.3",
-    "sinon": "4.0.1"
+    "eslint": "^4.8.0",
+    "eslint-config-qubyte": "^1.1.0",
+    "mocha": "^4.0.0",
+    "sandboxed-module": "^2.0.3",
+    "sinon": "^4.0.1"
   }
 }
