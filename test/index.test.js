@@ -48,8 +48,25 @@ describe('configeur', () => {
   });
 
   it('passes the schema, the environment, and the parsers to processConfig', () => {
-    configeur('fakeSchema', { parsers: 'fake-custom-parsers', mutable: 'is-mutable' });
+    configeur('fakeSchema', {
+      parsers: 'fake-custom-parsers',
+      mutable: 'is-mutable'
+    });
 
-    assert.deepEqual(processConfigStub.args, [['fakeSchema', { AN_ARG: 'argValue' }, 'fakeParsers', 'is-mutable']]);
+    assert.deepEqual(processConfigStub.args, [
+      ['fakeSchema', { AN_ARG: 'argValue' }, 'fakeParsers', 'is-mutable']
+    ]);
+  });
+
+  it('uses the optional env field to override process.env', () => {
+    configeur('fakeSchema', {
+      parsers: 'fake-custom-parsers',
+      mutable: 'is-mutable',
+      env: { A_DIFFERENT_ARG: 'differentValue' }
+    });
+
+    assert.deepEqual(processConfigStub.args, [
+      ['fakeSchema', { A_DIFFERENT_ARG: 'differentValue' }, 'fakeParsers', 'is-mutable']
+    ]);
   });
 });
