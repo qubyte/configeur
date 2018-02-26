@@ -33,10 +33,6 @@ describe('configeur', () => {
     assert.strictEqual(typeof configeur, 'function');
   });
 
-  it('re-exports itself as default', () => {
-    assert.equal(configeur.default, configeur);
-  });
-
   it('returns a config map', () => {
     assert.strictEqual(configeur('fakeSchema'), 'fakeProcessedConfig');
   });
