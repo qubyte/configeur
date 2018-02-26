@@ -6,5 +6,3 @@ const makeParsers = require('./lib/makeParsers');
 module.exports = function configeur(schema, options = {}) {
   return processConfig(schema, process.env, makeParsers(options.parsers), options.mutable);
 };
-
-module.exports.default = module.exports;
