@@ -1,18 +1,19 @@
-interface EnvironmentSpec {
-  defaultValue?: string;
-  required?: boolean;
-  type?: string;
+export = configure;
+
+declare function configure(environment: configeur.Environment, options?: configeur.Options): Object;
+
+declare namespace configeur {
+  export interface Environment {
+    [propName: string]: EnvironmentSpec;
+  }
+  export interface EnvironmentSpec {
+    defaultValue?: string;
+    required?: boolean;
+    type?: string;
+  }
+  export interface Options {
+    parsers?: Parser[],
+    mutable?: Boolean
+  }
+  export type Parser = [string, (string) => any]
 }
-
-interface Environment {
-  [propName: string]: EnvironmentSpec;
-}
-
-type Parser = [string, (string) => any];
-
-interface Options {
-  parsers?: Parser[],
-  mutable?: Boolean
-}
-
-export default function configeur(environment: Environment, options?: Options): Object;
