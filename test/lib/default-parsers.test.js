@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('assert');
-const defaultParsers = require('../../lib/defaultParsers');
+const defaultParsers = require('../../lib/default-parsers');
 
 describe('defaultParsers', () => {
   it('is an array', () => {

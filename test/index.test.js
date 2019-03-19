@@ -18,8 +18,8 @@ describe('configeur', () => {
 
     configeur = SandboxedModule.require('../index', {
       requires: {
-        './lib/processConfig': processConfigStub,
-        './lib/makeParsers': makeParsersStub
+        './lib/process-config': processConfigStub,
+        './lib/make-parsers': makeParsersStub
       },
       globals: {
         process: {

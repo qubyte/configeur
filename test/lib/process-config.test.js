@@ -1,8 +1,8 @@
 'use strict';
 
 const assert = require('assert');
-const parsers = new Map(require('../../lib/defaultParsers'));
-const processConfig = require('../../lib/processConfig');
+const parsers = new Map(require('../../lib/default-parsers'));
+const processConfig = require('../../lib/process-config');
 
 function getOwnPropertyDescriptors(obj) {
   const descriptors = {};
