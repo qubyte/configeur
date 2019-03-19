@@ -37,7 +37,7 @@ const config = configeur({
     }
 });
 
-module.exports = config; // An instance of Map.
+module.exports = config;
 ```
 
 The above, assuming no values are read from the environment, will assign to

@@ -10,9 +10,9 @@
   },
   "files": [
     "index.js",
-    "lib/defaultParsers.js",
-    "lib/makeParsers.js",
-    "lib/processConfig.js",
+    "lib/default-parsers.js",
+    "lib/make-parsers.js",
+    "lib/process-config.js",
     "index.d.ts"
   ],
   "engines": {
@@ -32,10 +32,10 @@
   },
   "homepage": "https://github.com/qubyte/configeur",
   "devDependencies": {
-    "eslint": "^5.13.0",
+    "eslint": "^5.15.3",
     "eslint-config-qubyte": "^2.0.0",
-    "mocha": "^5.2.0",
+    "mocha": "^6.0.2",
     "sandboxed-module": "^2.0.3",
-    "sinon": "^7.2.3"
+    "sinon": "^7.2.7"
   }
 }

@@ -1,8 +1,8 @@
 'use strict';
 
 const assert = require('assert');
-const makeParsers = require('../../lib/makeParsers');
-const defaultParsers = require('../../lib/defaultParsers');
+const makeParsers = require('../../lib/make-parsers');
+const defaultParsers = require('../../lib/default-parsers');
 
 describe('makeParsers', () => {
   it('is a function', () => {
