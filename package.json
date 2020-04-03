@@ -35,7 +35,7 @@
     "eslint": "^6.5.1",
     "eslint-config-qubyte": "^3.0.0",
     "mocha": "^6.2.1",
-    "sandboxed-module": "^2.0.3",
+    "sandboxed-module": "^2.0.4",
     "sinon": "^7.5.0"
   }
 }
