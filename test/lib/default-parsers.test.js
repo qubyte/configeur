@@ -1,7 +1,5 @@
-'use strict';
-
-const assert = require('assert');
-const defaultParsers = require('../../lib/default-parsers');
+import { strict as assert } from 'assert';
+import defaultParsers from '../../lib/default-parsers.js';
 
 describe('defaultParsers', () => {
   it('is an array', () => {

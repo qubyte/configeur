@@ -1,51 +1,67 @@
-'use strict';
-
-const assert = require('assert');
-const sinon = require('sinon');
-const SandboxedModule = require('sandboxed-module');
+import { strict as assert } from 'assert';
+import configeur from '../index.js';
 
 describe('configeur', () => {
-  let processConfigStub;
-  let makeParsersStub;
-  let configeur;
+  const original = { ...process.env };
 
-  beforeEach(() => {
-    processConfigStub = sinon.stub();
-    makeParsersStub = sinon.stub();
+  afterEach(() => {
+    // Remove all keys on process.env.
+    for (const key of Object.keys(process.env)) {
+      delete process.env[key];
+    }
 
-    processConfigStub.returns('fakeProcessedConfig');
-    makeParsersStub.returns('fakeParsers');
-
-    configeur = SandboxedModule.require('../index', {
-      requires: {
-        './lib/process-config': processConfigStub,
-        './lib/make-parsers': makeParsersStub
-      },
-      globals: {
-        process: {
-          env: { AN_ARG: 'argValue' }
-        }
-      }
-    });
+    // Return process.env to its original state.
+    Object.assign(process.env, original);
   });
 
   it('is a function', () => {
-    assert.strictEqual(typeof configeur, 'function');
+    assert.equal(typeof configeur, 'function');
   });
 
-  it('returns a config map', () => {
-    assert.strictEqual(configeur('fakeSchema'), 'fakeProcessedConfig');
+  it('retuns an object with null prototype', () => {
+    assert.deepEqual(configeur({}), Object.create(null));
   });
 
-  it('makes a parsers map with the parsers option', () => {
-    configeur('fakeSchema', { parsers: 'fake-custom-parsers' });
+  it('parses config with built-in parsers', () => {
+    const config = configeur({
+      PORT: {
+        defaultValue: '8000',
+        type: 'number'
+      }
+    });
 
-    assert.deepEqual(makeParsersStub.args, [['fake-custom-parsers']]);
+    assert.deepEqual(config, Object.assign(Object.create(null), {
+      PORT: 8000
+    }));
   });
 
-  it('passes the schema, the environment, and the parsers to processConfig', () => {
-    configeur('fakeSchema', { parsers: 'fake-custom-parsers', mutable: 'is-mutable' });
+  it('parses config with custom parsers', () => {
+    const date = new Date();
+    const config = configeur(
+      {
+        DATE: {
+          defaultValue: date.toISOString(),
+          type: 'date'
+        }
+      },
+      {
+        parsers: [['date', d => new Date(d)]]
+      }
+    );
 
-    assert.deepEqual(processConfigStub.args, [['fakeSchema', { AN_ARG: 'argValue' }, 'fakeParsers', 'is-mutable']]);
+    assert.deepEqual(config, Object.assign(Object.create(null), {
+      DATE: date
+    }));
+  });
+
+  it('throws when required config is not parsed in', () => {
+    assert.throws(() => configeur(
+      {
+        PORT: {
+          required: true,
+          type: 'number'
+        }
+      }
+    ), new Error('Missing required config for: PORT'));
   });
 });

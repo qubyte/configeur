@@ -1,8 +1,6 @@
-'use strict';
+import processConfig from './lib/process-config.js';
+import makeParsers from './lib/make-parsers.js';
 
-const processConfig = require('./lib/process-config');
-const makeParsers = require('./lib/make-parsers');
-
-module.exports = function configeur(schema, options = {}) {
+export default function configeur(schema, options = {}) {
   return processConfig(schema, process.env, makeParsers(options.parsers), options.mutable);
-};
+}
