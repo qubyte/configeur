@@ -1,8 +1,8 @@
-'use strict';
+import { strict as assert } from 'assert';
+import defaultParsers from '../../lib/default-parsers.js';
+import processConfig from '../../lib/process-config.js';
 
-const assert = require('assert');
-const parsers = new Map(require('../../lib/default-parsers'));
-const processConfig = require('../../lib/process-config');
+const parsers = new Map(defaultParsers);
 
 function getOwnPropertyDescriptors(obj) {
   const descriptors = {};

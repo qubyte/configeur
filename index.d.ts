@@ -1,4 +1,4 @@
-export = configure;
+export default configure;
 
 declare function configure(environment: configeur.Environment, options?: configeur.Options): Object;
 
