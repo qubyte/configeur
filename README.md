@@ -1,7 +1,5 @@
 # configeur
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/qubyte/configeur.svg)](https://greenkeeper.io/)
-
 This module is inspired by and borrows much of its behaviour from the excellent
 Konfiga module. This module removes the commandline parsing abilities of its
 ancestor, adds required variables, and simplifies some internal logic around
@@ -15,33 +13,28 @@ found to appropriate types. It supports:
  - Default values when environment variables should be optional.
  - Required values when environment variables are not optional.
 
-For compatibility with babel and TypeScript, this module re-exports itself as
-default and provides a TypeScript definition file.
-
 ### Usage
 
 Configeur accepts an object which defines config variables names and how to
-derive them from the environment (or a default).
+derive them from the environment (or a default). Import as an ES module.
 
 For example:
 
 ```js
 // Module config.js
 
-const configeur = require('configeur');
+import configeur from 'configeur';
 
-const config = configeur({
-    PORT: {
-        defaultValue: '8000',
-        type: 'number'
-    }
+export default configeur({
+  PORT: {
+    defaultValue: '8000',
+    type: 'number'
+  }
 });
-
-module.exports = config;
 ```
 
 The above, assuming no values are read from the environment, will assign to
-config.js:
+config.js as a default export:
 
 ```javascript
 {
@@ -77,9 +70,9 @@ type:
 
 ```js
 const config = configeur(schema, {
-    parsers: [
-        ['integer', value => parseInt(value, 10)]
-    ]
+  parsers: [
+    ['integer', value => parseInt(value, 10)]
+  ]
 });
 ```
 
